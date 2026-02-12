@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Для тебе 💌</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(145deg, #ffdde1, #ffb6c1);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 16px;
+    }
+    .screen {
+      max-width: 400px;
+      width: 100%;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 48px;
+      padding: 40px 24px;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,0.5);
+      box-shadow: 0 20px 40px rgba(255,105,135,0.2);
+    }
+    h1, h2 { color: #9f2b2b; margin-bottom: 24px; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 28px; }
+    p { font-size: 22px; color: #b13b3b; margin-bottom: 32px; }
+    .emoji-big { font-size: 80px; margin-bottom: 16px; }
+    .envelope { font-size: 100px; animation: float 3s infinite; }
+    @keyframes float { 50% { transform: translateY(-10px); } }
+    button {
+      background: #ff8a8a; color: white; border: none;
+      font-size: 24px; padding: 16px 40px; border-radius: 40px;
+      box-shadow: 0 10px 0 #b24b4b; cursor: pointer; margin: 10px;
+      border: 2px solid white;
+    }
+    button:active { transform: translateY(10px); box-shadow: 0 5px 0 #b24b4b; }
+    .hidden { display: none; }
+    .small-note { font-size: 18px; color: #a54242; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="scene1" class="screen">
+      <div class="envelope">💌</div>
+      <h2>У мене є малюсінька відкриточка для тебе! :З</h2>
+      <button onclick="nextScene(2)">Відкрити →</button>
+      <div class="small-note">✨ з любовʼю… Твоя Валентинка ✨</div>
+    </div>
+    <div id="scene2" class="screen hidden">
+      <div class="emoji-big">📩✨</div>
+      <h2>Відкриєш?)</h2>
+      <button onclick="nextScene(3)">Так, відкрити! 💕</button>
+      <div><button onclick="nextScene(1)" style="background:#d9b3b3; box-shadow:0 10px 0 #8f6b6b;">Пізніше...</button></div>
+    </div>
+    <div id="scene3" class="screen hidden">
+      <div class="emoji-big">❤️🧸💘</div>
+      <h1>З днем закоханих, кошенятко! 💓</h1>
+      <p>🤍 Ти це все для мене.</p>
+      <button onclick="nextScene(4)">Далі →</button>
+    </div>
+    <div id="scene4" class="screen hidden">
+      <div class="emoji-big">🥺💌</div>
+      <h2>Ти ж будеш моєю валентинкою? ^^</h2>
+      <div style="display:flex; gap:20px; justify-content:center; flex-wrap:wrap;">
+        <button onclick="nextScene(5)" style="background:#ff4d4d;">ТАК ❤️</button>
+        <button id="noBtn" onmouseover="moveButton()" style="background:#b0b0b0; box-shadow:0 10px 0 #5e5e5e;">НІ</button>
+      </div>
+      <p class="small-note">(кнопка "НІ" сором'язлива)</p>
+    </div>
+    <div id="scene5" class="screen hidden">
+      <div class="emoji-big">😽💋💗</div>
+      <h1>БОЖЕ ТАААААК!!!</h1>
+      <p>💗 я дуже щаслива!</p>
+      <p>💋 кохаю тебе</p>
+      <div style="margin-top:30px; font-size:40px;">🐻🎀✨</div>
+    </div>
+  </div>
+  <script>
+    function nextScene(n) {
+      for(let i=1;i<=5;i++) document.getElementById('scene'+i)?.classList.add('hidden');
+      document.getElementById('scene'+n)?.classList.remove('hidden');
+    }
+    function moveButton() {
+      let b = document.getElementById('noBtn');
+      if(b) {
+        b.style.position = 'absolute';
+        b.style.left = Math.random()*(window.innerWidth-200)+'px';
+        b.style.top = Math.random()*(window.innerHeight-200)+'px';
+      }
+    }
+    window.onload = () => nextScene(1);
+  </script>
+</body>
+</html>
